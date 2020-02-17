@@ -18,10 +18,10 @@ describe('event routes', () => {
   let meme;
   beforeEach(async () => {
     meme = await Meme.create({
-      headerText: 'HI',
+      inTopText: 'HI',
       imageUrl:
         'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/25201637/day_2_dec_14_085.jpg',
-      footerText: 'Corgi'
+      inBottomText: 'Corgi'
     });
   });
 
@@ -33,18 +33,18 @@ describe('event routes', () => {
     return request(app)
       .post('/api/v1/memes')
       .send({
-        headerText: 'HI',
+        inTopText: 'HI',
         imageUrl:
           'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/25201637/day_2_dec_14_085.jpg',
-        footerText: 'Corgi'
+        inBottomText: 'Corgi'
       })
       .then(res => {
         console.log(res.body);
         expect(res.body).toEqual({
           _id: expect.any(String),
-          headerText: expect.any(String),
+          inTopText: expect.any(String),
           imageUrl: expect.any(String),
-          footerText: expect.any(String),
+          inBottomText: expect.any(String),
           __v: 0
         });
       });
@@ -57,9 +57,9 @@ describe('event routes', () => {
         expect(res.body).toEqual([
           {
             _id: expect.any(String),
-            headerText: expect.any(String),
+            inTopText: expect.any(String),
             imageUrl: expect.any(String),
-            footerText: expect.any(String),
+            inBottomText: expect.any(String),
             __v: 0
           }
         ]);
@@ -72,9 +72,9 @@ describe('event routes', () => {
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
-          headerText: expect.any(String),
+          inTopText: expect.any(String),
           imageUrl: expect.any(String),
-          footerText: expect.any(String),
+          inBottomText: expect.any(String),
           __v: 0
         });
       });
@@ -83,13 +83,13 @@ describe('event routes', () => {
   it('updates a meme by Id', () => {
     return request(app)
       .patch(`/api/v1/memes/${meme._id}`)
-      .send({ footerText: 'HI' })
+      .send({ inBottomText: 'HI' })
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
-          headerText: expect.any(String),
+          inTopText: expect.any(String),
           imageUrl: expect.any(String),
-          footerText: 'HI',
+          inBottomText: 'HI',
           __v: 0
         });
       });
@@ -101,9 +101,9 @@ describe('event routes', () => {
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
-          headerText: expect.any(String),
+          inTopText: expect.any(String),
           imageUrl: expect.any(String),
-          footerText: expect.any(String),
+          inBottomText: expect.any(String),
           __v: 0
         });
       });
